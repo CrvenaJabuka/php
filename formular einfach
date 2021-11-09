@@ -1,0 +1,38 @@
+<?php
+$msg = "";
+
+if(count($_POST)>0) {
+	//es sind POST-Daten vorhanden, also muss ein Formular abgeschickt worden sein
+	//print_r($_POST); //$_POST["Emailadresse"], $_POST["PWD"]
+	
+	$korrekteEmail = "test@test.at";
+	$korrektesPWD = "test123";
+	
+	if($_POST["Emailadresse"]==$korrekteEmail && $_POST["PWD"]==$korrektesPWD) {
+		//die eingegebenen Daten sind korrekt --> Weiterleitung, etc.
+		$msg = '<p class="success">Vielen Dank - Sie werden eingeloggt.</p>';
+	}
+	else {
+		//Emailadresse und/oder PWD sind nicht korrekt --> Fehlermeldung an den User
+		$msg = '<p class="error">Leider waren die eingegebenen Daten nicht korrekt.</p>';
+	}
+}
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Formulare</title>
+</head>
+
+<body>
+	<?php echo($msg); ?>
+	<form method="post">
+		<label for="Emailadresse">Emailadresse:</label>
+		<input type="email" name="Emailadresse" id="Emailadresse" required>
+		<label for="PWD">Passwort:</label>
+		<input type="password" name="PWD" id="PWD" required>
+		<input type="submit" value="einloggen">
+	</form>
+</body>
+</html>
